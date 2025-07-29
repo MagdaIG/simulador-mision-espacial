@@ -1,0 +1,236 @@
+body {
+  background-color: #0a0e17;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+#stars, #stars2, #stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#stars {
+  background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1" viewBox="0 0 1 1"><circle cx="0.5" cy="0.5" r="0.5" fill="white" opacity="0.6"/></svg>') repeat;
+  animation: animStar 50s linear infinite;
+}
+
+#stars2 {
+  background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" viewBox="0 0 2 2"><circle cx="1" cy="1" r="1" fill="white" opacity="0.4"/></svg>') repeat;
+  animation: animStar 100s linear infinite;
+  transform: scale(1.5);
+}
+
+#stars3 {
+  background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" viewBox="0 0 3 3"><circle cx="1.5" cy="1.5" r="1.5" fill="white" opacity="0.2"/></svg>') repeat;
+  animation: animStar 150s linear infinite;
+  transform: scale(2);
+}
+
+@keyframes animStar {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
+}
+
+/* Estilos generales */
+.central-card {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.bg-space-dark {
+  background-color: #1a1e2e;
+  border: 1px solid #2a3a5a;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-action {
+  background-color: #2a3a5a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.btn-action:hover {
+  background-color: #3a4a6a;
+  transform: scale(1.05);
+}
+
+.btn-space {
+  background-color: #3a5a8a;
+  color: white;
+}
+
+.btn-space:hover {
+  background-color: #4a6a9a;
+  color: white;
+}
+
+.action-icon {
+  font-size: 1.2em;
+}
+
+/* Barras de progreso */
+.progress-container {
+  margin-bottom: 15px;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  border-radius: 5px;
+}
+
+/* Lista de tripulación */
+.crew-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.crew-member {
+  background-color: #2a3a5a;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crew-member .health {
+  width: 60px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.crew-member .health-bar {
+  height: 100%;
+  background-color: #4CAF50;
+  width: 100%;
+}
+
+.crew-stats {
+  background-color: #2a3a5a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Bitácora */
+.log-container {
+  height: 200px;
+  overflow-y: auto;
+  background-color: #0f121b;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.log-entry {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #2a3a5a;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-date {
+  color: #3a5a8a;
+  font-weight: bold;
+}
+
+.log-warning {
+  color: #FFA500;
+}
+
+.log-danger {
+  color: #FF5252;
+}
+
+.log-success {
+  color: #4CAF50;
+}
+
+.log-info {
+  color: #2196F3;
+}
+
+/* Badges */
+.badge {
+  font-weight: normal;
+  padding: 5px 8px;
+}
+
+/* Animaciones */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1e2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a5a8a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a6a9a;
+}
+
+.firma-neon {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  font-size: 1.1rem;
+  text-shadow:
+    0 0 5px #9b59b6,
+    0 0 10px #9b59b6,
+    0 0 20px #9b59b6,
+    0 0 40px #8e44ad;
+  background: #111;
+  border-top: 1px solid #444;
+  opacity: 0.9;
+}
+
+.nombre-firma {
+  font-weight: bold;
+  color: #e1bfff;
+}

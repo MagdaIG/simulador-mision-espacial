@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Misión Galáctica</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-dark text-white">
+<!-- Fondo estelar -->
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+
+<div class="container mt-5 central-card">
+  <h1 class="text-center mb-4 animate__animated animate__fadeInDown">
+    <i class="bi bi-rocket-takeoff-fill me-2"></i> Misión Galáctica
+  </h1>
+
+  <div class="row">
+    <!-- Panel de estado -->
+    <div class="col-md-4 mb-4">
+      <div class="card bg-space-dark text-white h-100">
+        <div class="card-header">
+          <h5 class="card-title">Estado de la Nave</h5>
+        </div>
+        <div class="card-body">
+          <div class="nave-info">
+            <h3 id="naveNombre" class="text-warning"></h3>
+            <p><strong>Modelo:</strong> <span id="naveModelo"></span></p>
+            <p><strong>Distancia recorrida:</strong> <span id="distancia"></span> km</p>
+            <p><strong>Estado:</strong> <span id="estadoMision" class="badge"></span></p>
+          </div>
+
+          <div class="progress-container mt-3">
+            <h6>Progreso de la misión</h6>
+            <div class="progress bg-dark">
+              <div id="progresoMision" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel de recursos -->
+    <div class="col-md-4 mb-4">
+      <div class="card bg-space-dark text-white h-100">
+        <div class="card-header">
+          <h5 class="card-title">Recursos</h5>
+        </div>
+        <div class="card-body">
+          <div class="resource-bar mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-droplet-fill me-1 text-info"></i> Agua</span>
+              <span id="agua-value"></span>
+            </div>
+            <div class="progress bg-dark">
+              <div id="agua-bar" class="progress-bar bg-info" role="progressbar"></div>
+            </div>
+          </div>
+
+          <div class="resource-bar mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-box2-heart-fill me-1 text-warning"></i> Comida</span>
+              <span id="comida-value"></span>
+            </div>
+            <div class="progress bg-dark">
+              <div id="comida-bar" class="progress-bar bg-warning" role="progressbar"></div>
+            </div>
+          </div>
+
+          <div class="resource-bar">
+            <div class="d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-lightning-fill me-1 text-danger"></i> Energía</span>
+              <span id="energia-value"></span>
+            </div>
+            <div class="progress bg-dark">
+              <div id="energia-bar" class="progress-bar bg-danger" role="progressbar"></div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <h6>Día de misión: <span id="diaMision" class="badge bg-primary">1</span></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Panel de tripulación -->
+    <div class="col-md-4 mb-4">
+      <div class="card bg-space-dark text-white h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="card-title">Tripulación</h5>
+          <button class="btn btn-sm btn-outline-light" onclick="mostrarModalTripulante()">+ Agregar</button>
+        </div>
+        <div class="card-body">
+          <div id="listaTripulantes" class="crew-list"></div>
+          <div class="crew-stats mt-3">
+            <div class="d-flex justify-content-between">
+              <span>Salud promedio:</span>
+              <span id="saludPromedio" class="badge"></span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Críticos (<50):</span>
+              <span id="tripulantesCriticos" class="badge bg-danger">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de acciones -->
+  <div class="card bg-space-dark mb-4">
+    <div class="card-header">
+      <h5 class="card-title">Acciones</h5>
+    </div>
+    <div class="card-body">
+      <div class="d-flex flex-wrap gap-2 justify-content-center">
+        <button class="btn btn-action animate__animated animate__pulse" onclick="explorar()">
+          <i class="bi bi-binoculars-fill me-2"></i> Explorar
+        </button>
+        <button class="btn btn-action animate__animated animate__pulse" onclick="comer()">
+          <i class="bi bi-egg-fried me-2"></i> Comer
+        </button>
+        <button class="btn btn-action animate__animated animate__pulse" onclick="descansar()">
+          <i class="bi bi-moon-stars-fill me-2"></i> Descansar
+        </button>
+        <button class="btn btn-action animate__animated animate__pulse" onclick="reparar()">
+          <i class="bi bi-tools me-2"></i> Reparar
+        </button>
+        <button class="btn btn-action animate__animated animate__pulse" onclick="reportar()">
+          <i class="bi bi-bar-chart-line-fill me-2"></i> Reporte
+        </button>
+        <button class="btn btn-action animate__animated animate__pulse" onclick="avanzarDia()">
+          <i class="bi bi-fast-forward-fill me-2"></i> Avanzar día
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bitácora -->
+  <div class="card bg-space-dark">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title">Bitácora de la misión</h5>
+      <button class="btn btn-sm btn-outline-light" onclick="limpiarBitacora()">Limpiar</button>
+    </div>
+    <div class="card-body">
+      <div id="bitacora" class="log-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de alerta -->
+<div class="modal fade" id="modalAlerta" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-space-dark text-white border-light">
+      <div class="modal-header">
+        <h5 class="modal-title">Mensaje del Sistema</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modalMensaje"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-space" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar tripulante -->
+<div class="modal fade" id="modalTripulante" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-space-dark text-white border-light">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Tripulante</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="nombreTripulante" class="form-label">Nombre</label>
+          <input type="text" class="form-control bg-dark text-white" id="nombreTripulante">
+        </div>
+        <div class="mb-3">
+          <label for="rolTripulante" class="form-label">Rol</label>
+          <select class="form-select bg-dark text-white" id="rolTripulante">
+            <option value="Capitán">Capitán</option>
+            <option value="Ingeniero">Ingeniero</option>
+            <option value="Médico">Médico</option>
+            <option value="Científico">Científico</option>
+            <option value="Piloto">Piloto</option>
+            <option value="Técnico">Técnico</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-space" onclick="agregarTripulante()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de configuración -->
+<div class="modal fade" id="modalConfig" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-space-dark text-white border-light">
+      <div class="modal-header">
+        <h5 class="modal-title">Configuración de la Misión</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="nombreNave" class="form-label">Nombre de la nave</label>
+          <input type="text" class="form-control bg-dark text-white" id="nombreNave" value="Odisea Galáctica">
+        </div>
+        <div class="mb-3">
+          <label for="modeloNave" class="form-label">Modelo</label>
+          <input type="text" class="form-control bg-dark text-white" id="modeloNave" value="XJ-900">
+        </div>
+        <div class="mb-3">
+          <label for="distanciaObjetivo" class="form-label">Distancia objetivo (km)</label>
+          <input type="number" class="form-control bg-dark text-white" id="distanciaObjetivo" value="150000">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-space" onclick="guardarConfiguracion()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="firma-neon text-center py-4">
+  Desarrollado por  <span class="nombre-firma">Magdalena Inalaf G.</span> – 2025
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
+</body>
+</html>

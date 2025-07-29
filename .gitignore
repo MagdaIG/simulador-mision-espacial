@@ -1,0 +1,20 @@
+# Editor settings
+.idea/
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+
+# node
+node_modules/
+
+# Cache navegador o dev
+dist/
+.env
+.env.local
